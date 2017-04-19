@@ -12,25 +12,35 @@ class Card
   end
 
   def self.random_suit
-    suits = [:spades, :hearts, :diamonds, :clubs]
-    random_one = suits.shuffle!.first
+    @suits = [:spades, :hearts, :diamonds, :clubs]
+    random_one = @suits.shuffle!.first
+  end
+
+  def self.random_rank
+    @ranks = ["Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King"]
+    random_one = @ranks.shuffle!.first
   end
 
   def self.random_card
-    Card.new(rand(1..13), Card.random_suit)
+    Card.new(Card.random_rank, Card.random_suit)
   end
 end
 
-card = Card.random_card
-puts card.output_card
 
 class Deck
 
 ## Auto stores each card in an array
   def initialize
     @cards = []
-    @cards << Card.new(rand(10), :spades)
-    @cards << Card.new(rand(9), :hearts)
+    @suits = [:spades, :hearts, :diamonds, :clubs]
+    @ranks = ["Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King"]
+
+    @suits.to_a.each do |suit|
+      @ranks.to_a.each do |rank|
+        @cards << Card.new(rank, suit)
+      end
+    end
+
   end
 
 ## Outputs each card
@@ -38,12 +48,15 @@ class Deck
     @cards.each do |card|
       card.output_card
     end
+    return self
   end
+
 
 ## Randomly orders the array of cards in the deck
   def shuffle
     @cards.shuffle!
   end
+
 
 ## Returns top card from deck and removes it from the array
   def deal
@@ -51,6 +64,3 @@ class Deck
   end
 
 end
-
-#card = Card.random_card
-#puts card.output_card
