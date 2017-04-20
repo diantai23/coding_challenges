@@ -1,3 +1,5 @@
+require 'pry'
+
 class Card
 
   attr_accessor :rank, :suit
@@ -30,17 +32,18 @@ end
 class Deck
 
 ## Auto stores each card in an array
+
   def initialize
     @cards = []
     @suits = [:spades, :hearts, :diamonds, :clubs]
     @ranks = ["Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King"]
-
+    
     @suits.to_a.each do |suit|
       @ranks.to_a.each do |rank|
         @cards << Card.new(rank, suit)
       end
     end
-
+    return @cards
   end
 
 ## Outputs each card
@@ -60,7 +63,11 @@ class Deck
 
 ## Returns top card from deck and removes it from the array
   def deal
-
+    @first_card =  @cards.shift
+    return @first_card
   end
 
 end
+
+new = Deck.new.output
+binding.pry
