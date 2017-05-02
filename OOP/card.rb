@@ -28,22 +28,23 @@ class Card
   end
 end
 
+# dealer class
+# deal to each player. n number of cards per hand per person
 
 class Deck
 
 ## Auto stores each card in an array
 
-  def initialize
+  def initialize #like setting up data to use later in class
     @cards = []
     @suits = [:spades, :hearts, :diamonds, :clubs]
     @ranks = ["Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King"]
-    
+
     @suits.to_a.each do |suit|
       @ranks.to_a.each do |rank|
         @cards << Card.new(rank, suit)
       end
     end
-    return @cards
   end
 
 ## Outputs each card
@@ -51,23 +52,36 @@ class Deck
     @cards.each do |card|
       card.output_card
     end
-    return self
+  #  return self #says return this instance of the class
   end
 
 
 ## Randomly orders the array of cards in the deck
   def shuffle
     @cards.shuffle!
+    binding.pry
   end
 
 
 ## Returns top card from deck and removes it from the array
   def deal
+
     @first_card =  @cards.shift
+
     return @first_card
+
   end
 
 end
 
-new = Deck.new.output
-binding.pry
+#binding.pry
+new = Deck.new
+
+# IRB: new.output
+# vs
+#new = Deck.new.output
+# IRB: new
+
+new.output
+
+# binding.pry
