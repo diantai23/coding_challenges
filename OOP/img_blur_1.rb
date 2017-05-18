@@ -11,6 +11,15 @@ class Image
   end
 end
 
+# Another way to write the method
+# def output_image
+#   @input_array.each do |row|
+#     row.each do |pixel|
+#       print pixel
+#     end
+#     puts
+#   end
+
 image = Image.new([
   [0, 0, 0, 0],
   [0, 1, 0, 0],
